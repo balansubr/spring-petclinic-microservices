@@ -1,0 +1,38 @@
+name: AzureSpringCloud
+on: push
+
+env:
+  GROUP: SpringOne-ASC-Demo
+  SERVICE_NAME: enterprise-tier-demo
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+
+    - uses: actions/checkout@main
+
+    - name: Set up JDK 1.8
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+
+    - name: maven build, clean
+      run: |
+        mvn clean package -DskipTests
+
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        
+    - name: Install ASC AZ extension
+      run: |
+        az extension remove -n spring-cloud
+        az extension add -s https://ascprivatecli.blob.core.windows.net/enterprise/spring_cloud-2.7.0_enterprise-py3-none-any.whl -y
+
+    - name: Deploy with AZ CLI commands
+      run: |
+        az config set defaults.group=$GROUP
+        az config set defaults.spring-cloud=$SERVICE_NAME
+        az spring-cloud app deploy -n customer-service --jar-path ${{ github.workspace }}/spring-petclinic-customers-service/target/spring-petclinic-customers-service.jar --config-profile-patterns "customers-service"
