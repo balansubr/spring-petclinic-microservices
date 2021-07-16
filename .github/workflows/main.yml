@@ -26,9 +26,9 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
         
-#     - name: Install ASC AZ extension
-#       run: |
-#         az extension add -s https://ascprivatecli.blob.core.windows.net/enterprise/spring_cloud-2.7.0_enterprise-py3-none-any.whl -y
+    - name: Install ASC AZ extension
+      run: |
+        az extension add -s https://ascprivatecli.blob.core.windows.net/enterprise/spring_cloud-2.7.0_enterprise-py3-none-any.whl -y
 
     - name: Deploy with AZ CLI commands
       run: |
