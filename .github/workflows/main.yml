@@ -26,12 +26,12 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
         
-    - name: Install ASC AZ extension
-      run: |
-        az extension add -s https://ascprivatecli.blob.core.windows.net/enterprise/spring_cloud-2.7.0_enterprise-py3-none-any.whl -y
+#     - name: Install ASC AZ extension
+#       run: |
+#         az extension add -s https://ascprivatecli.blob.core.windows.net/enterprise/spring_cloud-2.7.0_enterprise-py3-none-any.whl -y
 
     - name: Deploy with AZ CLI commands
       run: |
         az config set defaults.group=$GROUP
         az config set defaults.spring-cloud=$SERVICE_NAME
-        az spring-cloud app deploy -n customer-service --jar-path ${{ github.workspace }}/spring-petclinic-customers-service/target/spring-petclinic-customers-service.jar --config-profile-patterns "customers-service"
+        az spring-cloud app deploy -n customer-service --jar-path ${{ github.workspace }}/spring-petclinic-customers-service/target/spring-petclinic-customers-service.jar --config-file-patterns "customers-service"
