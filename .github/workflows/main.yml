@@ -1,4 +1,4 @@
-name: AzureSpringCloud
+name: Deploy Customers-service
 on: [push,workflow_dispatch]
 
 env:
@@ -28,7 +28,6 @@ jobs:
         
     - name: Install ASC AZ extension
       run: |
-        az extension remove -n spring-cloud
         az extension add -s https://ascprivatecli.blob.core.windows.net/enterprise/spring_cloud-2.7.0_enterprise-py3-none-any.whl -y
 
     - name: Deploy with AZ CLI commands
