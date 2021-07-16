@@ -34,4 +34,4 @@ jobs:
       run: |
         az config set defaults.group=$GROUP
         az config set defaults.spring-cloud=$SERVICE_NAME
-        az spring-cloud app deploy -n customers-service --jar-path ${{ github.workspace }}/spring-petclinic-customers-service/target/spring-petclinic-customers-service.jar --config-file-patterns "customers-service"
+        az spring-cloud app deploy -n customers-service --jar-path ${{ github.workspace }}/spring-petclinic-customers-service/target/spring-petclinic-customers-service-2.5.1.jar --config-file-patterns "customers-service"
