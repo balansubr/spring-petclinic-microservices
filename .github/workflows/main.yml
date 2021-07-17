@@ -1,4 +1,4 @@
-name: Deploy Customer service into Azure Spring Cloud
+name: Deploy into Azure Spring Cloud
 on: [push,workflow_dispatch]
 
 env:
@@ -30,7 +30,7 @@ jobs:
       run: |
         az extension add -s https://ascprivatecli.blob.core.windows.net/enterprise/spring_cloud-2.7.0_enterprise-py3-none-any.whl -y
 
-    - name: Deploy with AZ CLI commands
+    - name: Deploy
       run: |
         az config set defaults.group=$GROUP
         az config set defaults.spring-cloud=$SERVICE_NAME
