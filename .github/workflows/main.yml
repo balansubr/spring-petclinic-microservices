@@ -1,4 +1,4 @@
-name: Deploy into Azure Spring Cloud
+name: Deploy to Azure Spring Cloud
 on: [push,workflow_dispatch]
 
 env:
