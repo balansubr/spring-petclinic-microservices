@@ -1,9 +1,9 @@
 name: Deploy to Azure Spring Cloud
-on: [push,workflow_dispatch]
+on: [workflow_dispatch]
 
 env:
   GROUP: PetClinic-Dev
-  SERVICE_NAME: petclinic-prod
+  SERVICE_NAME: petclinic-staging
 
 jobs:
   build-and-deploy:
